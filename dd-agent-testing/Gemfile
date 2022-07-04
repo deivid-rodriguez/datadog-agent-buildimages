@@ -24,6 +24,10 @@ group :ec2 do
   gem "kitchen-ec2", '~> 3.13.0'
 end
 
+group :gce do
+  gem "kitchen-google", '~> 2.3.0'
+end
+
 group :kitchen do
   gem "test-kitchen", '~> 3.3.1'
 end
