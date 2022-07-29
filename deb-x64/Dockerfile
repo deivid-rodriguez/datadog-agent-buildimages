@@ -154,6 +154,7 @@ ENV PATH "~/.cargo/bin:${PATH}"
 RUN git clone https://github.com/facebook/zstd --branch v1.5.2 --depth 1 \
     && cd zstd \
     && make install \
+    && cd .. \
     && rm -r zstd
 
 # Entrypoint

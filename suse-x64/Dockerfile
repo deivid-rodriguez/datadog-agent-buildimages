@@ -142,6 +142,12 @@ RUN curl -sSL -o rustup-init https://static.rust-lang.org/rustup/archive/${RUSTU
     && echo "${RUSTC_SHA256}  $HOME/.cargo/bin/rustc" | sha256sum --check
 ENV PATH "~/.cargo/bin:${PATH}"
 
+RUN git clone https://github.com/facebook/zstd --branch v1.5.2 --depth 1 \
+    && pushd zstd \
+    && make install \
+    && popd \
+    && rm -r zstd
+
 # Entrypoint
 COPY ./entrypoint.sh /
 RUN chmod +x /entrypoint.sh

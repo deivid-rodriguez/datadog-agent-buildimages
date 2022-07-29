@@ -50,7 +50,7 @@ RUN yum -y install \
   which perl-ExtUtils-MakeMaker \
   pkgconfig \
   curl-devel expat-devel gettext-devel openssl-devel zlib-devel bzip2 \
-  glibc-static tar libtool \
+  glibc-static tar zstd libtool \
   bzip2-devel e2fsprogs-devel file-devel libacl-devel libattr-devel \
   libxml2-devel lzo-devel nss nss-devel popt-devel postgresql-devel sharutils xz-devel \
   && yum clean all
