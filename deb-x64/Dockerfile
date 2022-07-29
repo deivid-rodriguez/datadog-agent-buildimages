@@ -153,7 +153,8 @@ ENV PATH "~/.cargo/bin:${PATH}"
 
 RUN git clone https://github.com/facebook/zstd --branch v1.5.2 --depth 1 \
     && cd zstd \
-    && make check
+    && make install \
+    && rm -r zstd
 
 # Entrypoint
 COPY ./entrypoint.sh /
