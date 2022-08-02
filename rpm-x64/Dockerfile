@@ -50,7 +50,7 @@ RUN yum -y install \
   which perl-ExtUtils-MakeMaker \
   pkgconfig \
   curl-devel expat-devel gettext-devel openssl-devel zlib-devel bzip2 \
-  glibc-static tar zstd libtool \
+  glibc-static tar libtool \
   bzip2-devel e2fsprogs-devel file-devel libacl-devel libattr-devel \
   libxml2-devel lzo-devel nss nss-devel popt-devel postgresql-devel sharutils xz-devel \
   && yum clean all
@@ -200,6 +200,12 @@ RUN curl -sSL -o rustup-init https://static.rust-lang.org/rustup/archive/${RUSTU
     && ./rustup-init -y --default-toolchain ${RUST_VERSION} \
     && echo "${RUSTC_SHA256}  $HOME/.cargo/bin/rustc" | sha256sum --check
 ENV PATH "~/.cargo/bin:${PATH}"
+
+RUN git clone https://github.com/facebook/zstd --branch v1.5.2 --depth 1 \
+    && cd zstd \
+    && make install \
+    && cd .. \
+    && rm -r zstd
 
 # Entrypoint
 COPY ./entrypoint.sh /
