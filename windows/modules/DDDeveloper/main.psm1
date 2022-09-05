@@ -37,13 +37,13 @@ function Use-BuildEnv {
         if($newPathEntries -notcontains $e) {
             ##
             ## if this is the `go` path, skip it because we're going to manually add it later
-            if($e -contains "\go\"){
+            if($e -like "*\go\*"){
                 continue
             }
             ## need to hack this a bit.  Ideally all the path entries would be behind the default
             ## windows entries; but windows10/11 includes a python "stub", so we need to put python
             ## before the windows entries
-            if($e -contains "python"){
+            if($e -like "*python*"){
                 $newPathEntries = @($e) + $newPathEntries
             } else {
                 $newPathEntries += $e
