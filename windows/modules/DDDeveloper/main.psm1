@@ -52,10 +52,12 @@ function Use-BuildEnv {
     }
     
     ## append the proper go paths.
+    $useGoVersion = $GoVer
     if(!$GoVer) {
-        $GoVer = Get-Goversions
+        $versions = Get-Goversions
+        $useGoVersion = $versions[0]
     }
-    Set-GoVersion $GoVer
+    Set-GoVersion $useGoVersion
 
     $newPathEntries += "$Env:GOROOT\bin"
     $newPathEntries += "$Env:GOPATH\bin"
